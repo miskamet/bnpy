@@ -313,13 +313,13 @@ def plotCompsFromWordCounts(
     if vocabList is None:
         raise ValueError('Missing vocabList. Cannot display topics.')
     if WordCounts is not None:
-        WordCounts = np.asarray(WordCounts, dtype=np.float64)
+        WordCounts = np.asarray(WordCounts, dtype=float)
         if WordCounts.ndim == 1:
             WordCounts = WordCounts[np.newaxis,:]
         K, vocab_size = WordCounts.shape
         N = np.sum(WordCounts, axis=1)
     else:
-        topics_KV = np.asarray(topics_KV, dtype=np.float64)
+        topics_KV = np.asarray(topics_KV, dtype=float)
         K, vocab_size = topics_KV.shape
 
     if compListToPlot is None:
@@ -423,7 +423,7 @@ def count2str(val, width=4, minVal=0.01, **kwargs):
     '''
     val = np.asarray(val)
     assert width >= 4
-    if val.dtype == np.float:
+    if val.dtype == float:
         nDecPlace = int(np.abs(np.log10(minVal)))
         if val < minVal:
             fmt = '%' + str(width) + 's'
